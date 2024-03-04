@@ -1,10 +1,12 @@
-# Beecrowd Exercises Python
- ## Beecrowd Python exercises with resolutions
-     1. Beginner
-     1. Ad-Hoc
-     1. Strings
-     1. Structures
-     1. Mathematics
-     1. Paradigms
-     1. Graphs
-     1. Geometry
+# Beecrowd Python Exercises
+## Solutions for Beecrowd Python Exercises
+
+1. **Beginner**
+2. **Ad-Hoc**
+3. **Strings**
+4. **Structures**
+5. **Mathematics**
+6. **Paradigms**
+7. **Graphs**
+8. **Geometry**
+
