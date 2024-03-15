@@ -10,24 +10,25 @@
 
 entrada = str(input())
 limite_r = int(input())
-n_operacoes, numero_rs = 0, 0
+n_operacoes = entrada.count("W")
 
-for p, v in enumerate(entrada):
-    print(p == int())
-    print(f"{p}o --> {v}")
-    prox = int(p + 1 if (p + 1) < len(entrada) else p)   # proximo valor recebe p + 1 se não for o último valor, senão --> p = p
-    print(f"prox = int? --> {prox == int()} --- prox = {prox} --> {type(prox)}")
-    if v == "R" and entrada[prox] == "R":
-        if numero_rs < limite_r and prox != len(entrada):
-            numero_rs += 1
-            print(f"N Rs --> {numero_rs}")
+if "R" in entrada and "W" not in entrada:
+    if entrada.count("R") % limite_r != 0:
+        n_operacoes += entrada.count("R") // limite_r + 1
+    else:
+        n_operacoes += entrada.count("R") / limite_r
+elif "R" in entrada and "W" in entrada:
+    n_operacoes = 0
+    numero_rs = 0
+    for k, v in enumerate(entrada):
+        prox = int(k + 1 if (k + 1) < len(entrada) else k) # proximo valor de verificação recebe k + 1 se não for o último valor, senão prox --> k
+        if v == "R" and entrada[prox] == "R":
+            if numero_rs < limite_r and prox < len(entrada):
+                numero_rs += 1
         else:
-            print("Limite alcançado")
             n_operacoes += 1
             numero_rs = 0
-    else:
-        print("Foi W")
-        n_operacoes += 1
-        numero_rs = 0
-    print(n_operacoes + 1)
+    n_operacoes += 1
+    
+print(n_operacoes)
 
