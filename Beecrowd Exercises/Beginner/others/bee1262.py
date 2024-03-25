@@ -18,8 +18,8 @@ if "R" in entrada and "W" not in entrada:
     else:
         n_operacoes += entrada.count("R") / limite_r
 elif "R" in entrada and "W" in entrada:
-    n_operacoes = 0
-    numero_rs = 0
+    n_operacoes = 0 # contabiliza o número de operações 
+    numero_rs = 0   # contabiliza "R" para não exceder o limite
     for k, v in enumerate(entrada):
         prox = int(k + 1 if (k + 1) < len(entrada) else k) # proximo valor de verificação recebe k + 1 se não for o último valor, senão prox --> k
         if v == "R" and entrada[prox] == "R":
