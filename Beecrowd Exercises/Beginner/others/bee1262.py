@@ -8,27 +8,39 @@
 
 # output --> número de operações mínimas
 
-entrada = str(input())
-limite_r = int(input())
-n_operacoes = entrada.count("W")
+rw_input = str(input())   # input inicial
+r_limit = int(input())    # limite de R's
+operations_counter = rw_input.count("W")   # contador de operações mínimas considerando um input com apenas W
 
-if "R" in entrada and "W" not in entrada:
-    if entrada.count("R") % limite_r != 0:
-        n_operacoes += entrada.count("R") // limite_r + 1
+# bloco consideranndo apenas R no input
+if "R" in rw_input and "W" not in rw_input:
+    if rw_input.count("R") % r_limit != 0:
+        operations_counter += rw_input.count("R") // r_limit + 1
     else:
-        n_operacoes += entrada.count("R") / limite_r
-elif "R" in entrada and "W" in entrada:
-    n_operacoes = 0 # contabiliza o número de operações 
-    numero_rs = 0   # contabiliza "R" para não exceder o limite
-    for k, v in enumerate(entrada):
-        prox = int(k + 1 if (k + 1) < len(entrada) else k) # proximo valor de verificação recebe k + 1 se não for o último valor, senão prox --> k
-        if v == "R" and entrada[prox] == "R":
-            if numero_rs < limite_r and prox < len(entrada):
-                numero_rs += 1
-        else:
-            n_operacoes += 1
-            numero_rs = 0
-    n_operacoes += 1
-    
-print(n_operacoes)
+        operations_counter += rw_input.count("R") / r_limit
+
+# bloco considerando R e W no input
+elif "R" in rw_input and "W" in rw_input:
+    operations_counter = 0 # contabiliza o número de operações 
+    r_counter = 0   # contabiliza "R" para não exceder o limite
+    for k, v in enumerate(rw_input):   # Key and Value
+        if v == "W":
+            r_counter = 0
+            operations_counter += 1
+        elif v == "R":
+            try:
+                if r_counter == 0:  # contabilizando primeiro R
+                    r_counter += 1
+                if rw_input[k + 1] == "R" and r_counter < r_limit:
+                    r_counter += 1
+                else:
+                    r_counter = 0
+                    operations_counter += 1
+            except:
+                if r_counter == r_limit:
+                    r_counter = 0
+                    operations_counter += 1
+                else:
+                    operations_counter += 1
+print(operations_counter)
 
